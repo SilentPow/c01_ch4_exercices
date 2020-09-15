@@ -1,56 +1,35 @@
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod-redirect-0.herokuapp.com/)
 
-# Capitalisation de noms de pays
+# Exercices en vrac (chapitre 4)
 
 Avant de commencer. Consulter les instructions à suivre dans [instructions.md](instructions.md)
 
-## Objectif
+## Objectifs
 
-Modifier les casses de noms de pays afin que:
-* Les mots de liaisons (ex.: and) soient en casses minuscules
-* Les premières lettres de noms soient en casses majuscules
+Compléter les quelques exercices suivants en modifiant le code de [exercice.py](exercice.py):
 
-### Exemple
-```python
-print(capitaliser_pays('antigua ANd barbuda'))
-```
-Antigua and Barbuda
+1. Vérifier si le nombre de caractères d’une chaîne de caractères est pair
+2. Supprimer le 3ème caractère d’une chaîne de caractères
+3. Remplacer un caractère d’une chaîne de caractère par un autre
+4. Renvoyer le nombre d’occurrences d’un caractère dans une chaîne de caractères, sans utiliser de fonctions avancées
+5. Rechercher le nombre de mots dans une phrase donnée
 
 ### À compléter
-Vous devez compléter la fonction suivante du fichier [exercice.py](exercice.py).
+Vous devez compléter les fonctions suivantes du fichier [exercice.py](exercice.py).
 
 ```python
-def capitaliser_pays(nom):
-    #TODO completer la fonction
-    return nom
-```
+def is_even_len(string: str) -> bool:
+    return True
 
-## Connaissances utiles
+def remove_third_char(string: str) -> str:
+    return ""
 
-### Changement de casse
-```python
-chaine = "Hello, World!"
-print(chaine.upper())
-print(chaine.lower())
-print(chaine.capitalize())
-print(chaine.swapcase())
-```
-HELLO, WORLD!<br>
-hello, world!<br>
-Hello, world!<br>
-hELLO, wORLD!<br>
+def replace_char(string: str, old_char: str, new_char: str) -> str:
+    return ""
 
-### Remplacement de sous-chaîne (substring)
-```python
-print(chaine.replace('Hello', 'Bonjour'))
-```
-Bonjour, World!<br>
+def get_nb_char(string: str, char: str) -> int:
+    return 0
 
-### Trouver une sous-chaîne ou un charactère
-```python
-# retourne le premier indice trouvé
-print(chaine.find('o'))
-print(chaine.find('World'))
+def get_nb_words(sentence: str, word: str) -> int:
+    return 0
 ```
-4<br>
-7

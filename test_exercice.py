@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import os
 import sys
 import unittest
@@ -8,60 +9,76 @@ import exercice
 
 
 class TestExercice(unittest.TestCase):
-    def setUp(self):
-        with open('./data/sample_countries.txt') as f:
-            self.countries = [name.replace('\n', '') for name in f.readlines()]
+    def test_pair(self):
+        values = ["hey jad!", "abcdefg", "0"]
 
-    def test_capitalize_first_letter(self):
-        names = [
-            'Angola',
-            'The Bahamas',
-            'Andorra',
-            'Antigua and Barbuda',
-            'Georgia'
-        ]
-        altered_names = [x[0].lower() + x[1:] for x in names]
-        output = list(map(exercice.capitaliser_pays, altered_names))
-        output_first_letters = list(map(lambda name: name[0], output))
-        expected_first_letters = list(map(lambda name: name[0], names))
-        self.assertListEqual(
-            output_first_letters,
-            expected_first_letters,
-            'Mettre la permiere lettre en majuscule'
-        )
+        output = [exercice.is_even_len(v) for v in values]
+        answer = [len(v) % 2 == 0 for v in values]
 
-    def test_lower_case_names(self):
-        altered_names = [country.lower() for country in self.countries]
-        output = list(map(exercice.capitaliser_pays, altered_names))
         self.assertListEqual(
             output,
-            self.countries,
-            'Certaines lettres ne doivent pas etre en minuscules'
+            answer,
+            'Mauvaise identification de la parité de la longueur de la chaine'
         )
 
-    def test_upper_case_names(self):
-        altered_names = [country.upper() for country in self.countries]
-        output = list(map(exercice.capitaliser_pays, altered_names))
+    def test_remove_third_char(self):
+        values = ["hey jad!", "abcdefg", "01234"]
+
+        output = [exercice.remove_third_char(v) for v in values]
+        answer = [v[0:2] + v[3:] for v in values]
+
         self.assertListEqual(
             output,
-            self.countries,
-            'Certaines lettres ne doivent pas etre en majuscule'
+            answer,
+            'Retrait du mauvais caractère'
         )
 
-    def test_linking_words(self):
-        names = [
-            'Antigua and Barbuda',
-            'Bosnia and Herzegovina'
+    def test_replace_char(self):
+        values = [
+            ("hey jad!", "j", "y"),
+            ("aaaaab", "a", "b"),
+            ("01234", "0", "a")
         ]
-        altered_names = [
-            'Antigua aNd Barbuda',
-            'Bosnia ANd Herzegovina'
-        ]
-        output = list(map(exercice.capitaliser_pays, altered_names))
+
+        output = [exercice.replace_char(v[0], v[1], v[2]) for v in values]
+        answer = [v[0].replace(v[1], v[2]) for v in values]
+
         self.assertListEqual(
             output,
-            names,
-            'Les mots de liaison doivent etre en minuscule'
+            answer,
+            'Erreur dans le remplacement de caractère'
+        )
+    
+    def test_get_nb_char(self):
+        values = [
+            ("aaaa123", "a"),
+            ("athse wqc re", "s"),
+            ("aaaa", "x")
+        ]
+
+        output = [exercice.get_nb_char(v[0], v[1]) for v in values]
+        answer = [v[0].count(v[1]) for v in values]
+
+        self.assertListEqual(
+            output,
+            answer,
+            "Mauvais calcul du nombre d'occurences du caractère"
+        )
+
+    def test_get_nb_words(self):
+        values = [
+            ("Comment allez vous aller chez vous"),
+            ("Bonjour hello ok salut merci"),
+            ("The 2006 Subway 500 was the 32nd stock car race of the 2006 NASCAR Nextel Cup Series and the sixth in the ten-race Chase for the Nextel Cup.")
+        ]
+
+        output = [exercice.get_nb_words(v[0], v[1]) for v in values]
+        answer = [len(v.split()) for v in values]
+
+        self.assertListEqual(
+            output,
+            answer,
+            "Mauvais calcul du nombre de mots dans une phrase."
         )
 
 
